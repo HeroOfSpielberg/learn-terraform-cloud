@@ -22,6 +22,10 @@ resource "aws_instance" "ubuntu" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
+  subnet_id                   = aws_subnet.subnet-00d9e809f429989ae.id
+  vpc_security_group_ids      = [aws_security_group.vpc-0aec39cf706b365d5.id]
+  associate_public_ip_address = true
+
   tags = {
     Name = var.instance_name
   }
