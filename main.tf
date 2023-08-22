@@ -20,8 +20,8 @@ data "aws_ami" "ubuntu" {
 
 # Specify the ID of the existing VPC
 variable "existing_vpc_id" {
-  description = "vpc-0aec39cf706b365d5"
-
+  description = "Pat VPC"
+  default = "vpc-0aec39cf706b365d5"
 }
 
 # Create an EC2 instance using the defined subnet and VPC
