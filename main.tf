@@ -24,6 +24,7 @@ variable "existing_subnet_id" {
   default = "subnet-00d9e809f429989ae"
 }
 
+/*
 # Create an EC2 instance using the defined subnet and VPC
 resource "aws_instance" "ubuntu" {
   ami                         = data.aws_ami.ubuntu.id
@@ -35,3 +36,4 @@ resource "aws_instance" "ubuntu" {
     Name = var.instance_name
   }
 }
+*/
