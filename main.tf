@@ -18,13 +18,22 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+# Create a VPC
+resource "aws_vpc" "PATOPAVPC" {
+  cidr_block = "172.16.0.0/16"
+}
 
-
+# Create a subnet within the VPC
+resource "aws_subnet" "PATOPASubnet" {
+  vpc_id     = aws_vpc.PATOPAVPC.id
+  cidr_block = "172.16.10.0/24"
+}
+# Create an EC2 instance using the defined subnet and VPC
 resource "aws_instance" "ubuntu" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
- subnet_id                   = aws_subnet.subnet-00d9e809f429989ae.id
+ subnet_id                   = aws_subnet.PATOPASubnet.id
  vpc_security_group_ids      = [aws_security_group.vpc-0aec39cf706b365d5.id]
  associate_public_ip_address = true
 
@@ -32,15 +41,3 @@ resource "aws_instance" "ubuntu" {
     Name = var.instance_name
   }
 }
-
-# Everything post here is what I added
-
-resource "aws_vpc" "PATOPAVPC" {
-  cidr_block = "172.16.0.0/16"
-}
-
-resource "aws_subnet" "PATOPASubnet" {
-  vpc_id     = aws_vpc.subnet-00d9e809f429989ae.id
-  cidr_block = "172.16.10.0/24"
-}
-
