@@ -13,3 +13,8 @@ variable "instance_name" {
   default     = "Provisioned by Terraform"
 }
 
+# Specify the ID of the existing Subnet
+variable "existing_subnet_id" {
+  description = "Pat Subnet"
+  default = "subnet-00d9e809f429989ae"
+}
