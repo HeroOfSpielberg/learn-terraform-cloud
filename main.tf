@@ -31,7 +31,7 @@ resource "aws_instance" "windows_22" {
   subnet_id                   = var.existing_subnet_id
   associate_public_ip_address = true
   key_name                    = "pat-opa-aws-servers"
-  security_groups = [data.data.aws_security_group.patopa_security_group.name]
+  security_groups = [data.aws_security_group.patopa_security_group.name]
 
   tags = {
     Name = var.instance_name
