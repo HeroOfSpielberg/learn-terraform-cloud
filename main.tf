@@ -15,7 +15,7 @@ data "aws_ami" "windows_22" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["801119661308"] # Canonical
 }
 
 # Create an EC2 instance using the defined subnet and VPC
