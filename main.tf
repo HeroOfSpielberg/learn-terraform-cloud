@@ -2,7 +2,7 @@ provider "aws" {
   region = var.region
 }
 
-data "aws_ami" "windows_2022" {
+data "aws_ami" "windows_22" {
   most_recent = true
 
   filter {
@@ -19,8 +19,8 @@ data "aws_ami" "windows_2022" {
 }
 
 # Create an EC2 instance using the defined subnet and VPC
-resource "aws_instance" "windows_2022" {
-  ami                         = data.aws_ami.windows_2022
+resource "aws_instance" "windows_22" {
+  ami                         = data.aws_ami.windows_22
   instance_type               = var.instance_type
   subnet_id                   = var.existing_subnet_id
   associate_public_ip_address = true
