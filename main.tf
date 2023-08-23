@@ -20,7 +20,7 @@ data "aws_ami" "windows_2022" {
 
 # Create an EC2 instance using the defined subnet and VPC
 resource "aws_instance" "windows_2022" {
-  ami                         = data.aws_ami.windows_2022.id
+  ami                         = data.aws_ami.windows_2022
   instance_type               = var.instance_type
   subnet_id                   = var.existing_subnet_id
   associate_public_ip_address = true
