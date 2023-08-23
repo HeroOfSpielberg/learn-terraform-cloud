@@ -26,6 +26,7 @@ resource "aws_instance" "windows_22" {
   instance_type               = var.instance_type
   subnet_id                   = var.existing_subnet_id
   associate_public_ip_address = true
+  key_name                    = "pat-opa-aws-servers"
 
   tags = {
     Name = var.instance_name
