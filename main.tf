@@ -21,7 +21,7 @@ data "aws_ami" "windows_22" {
 }
 
 resource "aws_security_group" "patopa_security_group" {
-  name = "PATOPAWindowsDC"
+  name = "PATOPAWindowsDCSecurityGroup"
   vpc_id = "vpc-0aec39cf706b365d5"
 }
 
