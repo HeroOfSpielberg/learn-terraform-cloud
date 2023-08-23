@@ -20,9 +20,11 @@ data "aws_ami" "windows_22" {
   owners = ["801119661308"] # Canonical
 }
 
-data "aws_security_group" "patopa_security_group" {
-  name = "PATOPAWindowsDCSecurityGroup"
+resource "aws_security_group" "patopa_security_group" {
+  name = "PATOPAWindowsDC"
+  vpc_id = "vpc-0aec39cf706b365d5"
 }
+
 
 # Create an EC2 instance using the defined subnet and VPC
 resource "aws_instance" "windows_22" {
@@ -31,7 +33,7 @@ resource "aws_instance" "windows_22" {
   subnet_id                   = var.existing_subnet_id
   associate_public_ip_address = true
   key_name                    = "pat-opa-aws-servers"
-  security_groups = [data.aws_security_group.patopa_security_group.name]
+  vpc_security_group_ids      = [aws_security_group.patopa_security_group.id]
 
   tags = {
     Name = var.instance_name
