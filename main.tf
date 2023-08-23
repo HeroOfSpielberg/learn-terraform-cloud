@@ -2,12 +2,12 @@ provider "aws" {
   region = var.region
 }
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "windows" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["Windows_Server-2022-English-Full-*"]
   }
 
   filter {
@@ -24,10 +24,9 @@ variable "existing_subnet_id" {
   default = "subnet-00d9e809f429989ae"
 }
 
-
 # Create an EC2 instance using the defined subnet and VPC
-resource "aws_instance" "ubuntu" {
-  ami                         = data.aws_ami.ubuntu.id
+resource "aws_instance" "windows" {
+  ami                         = data.aws_ami.windows.id
   instance_type               = var.instance_type
   subnet_id                   = var.existing_subnet_id
   associate_public_ip_address = true
